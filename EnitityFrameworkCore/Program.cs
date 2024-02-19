@@ -34,6 +34,12 @@ namespace EnitityFrameworkCore
                 context.Clients.Remove(client);
                 context.SaveChanges();
             }
+
+            foreach (var f in context.Flights)
+            {
+                Console.WriteLine($"Flight : {f.Id}, From : {f.DepartureSity}" +
+                                        $" to {f.ArrivalSity}");
+            }
         }
     }
 }
