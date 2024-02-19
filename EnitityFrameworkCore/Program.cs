@@ -14,11 +14,11 @@ namespace EnitityFrameworkCore
                 Email = "volodya@gmail.com"
             });
             context.SaveChanges();
-            foreach (var item in context.Clients)
-            {
-                Console.WriteLine($"Client : name - {item.Name}, email - " +
-                    $"{item.Email}, birthday - {item.Birthday?.ToShortDateString()}");
-            }
+            //foreach (var item in context.Clients)
+            //{
+            //    Console.WriteLine($"Client : name - {item.Name}, email - " +
+            //        $"{item.Email}, birthday - {item.Birthday?.ToShortDateString()}");
+            //}
             var filteredFlights = context.Flights
                                         .Where(f => f.ArrivalSity == "Lviv")
                                         .OrderBy(f => f.DepartureTime);
@@ -27,13 +27,13 @@ namespace EnitityFrameworkCore
                 Console.WriteLine($"Flight : {f.Id}. From : {f.DepartureSity} " +
                     $"to {f.ArrivalSity}");
             }
-            var client = context.Clients.Find(1);
+            //var client = context.Clients.Find(1);
 
-            if (client != null)
-            {
-                context.Clients.Remove(client);
-                context.SaveChanges();
-            }
+            //if (client != null)
+            //{
+            //    context.Clients.Remove(client);
+            //    context.SaveChanges();
+            //}
 
             foreach (var f in context.Flights)
             {

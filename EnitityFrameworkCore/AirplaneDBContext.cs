@@ -41,6 +41,46 @@ namespace EnitityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
+            //Fluent api configuration
+            //modelBuilder.Entity<Airplane>().Property(nameof(Model));
+            modelBuilder.Entity<Airplane>()
+                .Property(a=>a.Model)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<Client>().ToTable("Passengers");
+            modelBuilder.Entity<Client>()
+                .Property(c => c.Name)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("FirstName");
+
+            modelBuilder.Entity<Client>()
+                .Property(c => c.Email)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<Flight>()
+                .HasKey(f=>f.Id);
+            modelBuilder.Entity<Flight>()
+                .Property(c=>c.DepartureSity)
+                .IsRequired()
+                .HasMaxLength(100);
+            modelBuilder.Entity<Flight>()
+                .Property(c => c.ArrivalSity)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            /*One to many (1....*) */
+            modelBuilder.Entity<Flight>()
+                .HasOne(f => f.Airplane)
+                .WithMany(a=>a.Flights)
+                .HasForeignKey(a => a.AirplaneId);
+            /*Many to many (*....*) */
+            modelBuilder.Entity<Flight>()
+                .HasMany(f => f.Clients)
+                .WithMany(c => c.Flights);
+            //Initializator - seeder
             modelBuilder.Entity<Airplane>().HasData(new Airplane[]
             {
                  new Airplane()

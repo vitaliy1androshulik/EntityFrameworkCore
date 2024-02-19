@@ -9,17 +9,14 @@ namespace EnitityFrameworkCore.Entities
 {
     public class Flight
     {
-        [Key]//Primary Key
         public int Id { get; set; }
         public string DepartureSity { get; set; }
-        [Required, MaxLength(100)]
         public string ArrivalSity { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
-        //Relational type : One to many (1.....*)
+        public int? Rating { get; set; }
         public int AirplaneId { get; set; }
-        public Airplane Airplane { get; set; }//null
-                                              //Relational type : Many to many (*.....*)
+        public Airplane Airplane { get; set; }                                     
         public ICollection<Client> Clients { get; set; }
     }
 }
